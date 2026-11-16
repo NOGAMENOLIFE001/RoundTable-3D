@@ -1,0 +1,15 @@
+node_modules
+dist
+.runtime
+.env
+.env.*
+!.env.example
+
+# служебные файлы
+*.log
+.vite
+.DS_Store
+Thumbs.db
+*.blend1
+.vscode/*
+!.vscode/extensions.json

@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --color-ink: #0E1726;
+  --color-ink-2: #16223A;
+  --color-mint: #5EF2C7;
+  --color-brass: #E0B15C;
+  --color-fog: #A9B6CC;
+  --color-paper: #F3F6FB;
+  --color-alarm: #FF6B6B;
+}
+
+@utility glass {
+  background: rgb(22 34 58 / 0.58);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgb(201 211 227 / 0.14);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* Безопасные отступы: вырез экрана на телефонах */
+#root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-mint);
+  outline-offset: 2px;
+}
+
+/* Системные мелочи в палитре зала: выделение, курсор ввода, полосы прокрутки */
+::selection {
+  background: rgb(94 242 199 / 0.32);
+  color: var(--color-paper);
+}
+input,
+textarea {
+  caret-color: var(--color-mint);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(169 182 204 / 0.28) transparent;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(169 182 204 / 0.28);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(169 182 204 / 0.45);
+}
+
+/* Меньше движения: убираем перемещения и пульсации, но оставляем короткие смены цвета и прозрачности,
+   чтобы состояния кнопок по-прежнему было видно */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.12s !important;
+    transition-property: color, background-color, border-color, opacity, box-shadow !important;
+    scroll-behavior: auto !important;
+  }
+}
